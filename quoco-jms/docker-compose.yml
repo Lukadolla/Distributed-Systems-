@@ -1,0 +1,41 @@
+version: '3'
+services:
+  auldfellas:
+    build: auldfellas
+    ports:
+      - "9001:9001"
+    expose:
+      - 9001
+
+  girlpower:
+    build: girlpower
+    ports:
+       - "9003:9003"
+    expose:
+      - 9003
+
+  dodgydrivers:
+    build: dodgydrivers
+    ports:
+      - "9002:9002"
+    expose:
+      - 9002
+
+  broker:
+    build: broker
+    ports:
+      - "9000:9000"
+    expose:
+      - 9000
+    depends_on:
+      - auldfellas
+      - dodgydrivers
+      - girlpower
+
+  client:
+    build: client
+    depends_on:
+      - broker
+      - girlpower
+      - dodgydrivers
+      - auldfellas
