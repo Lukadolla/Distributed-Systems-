@@ -1,0 +1,19 @@
+version: '3'
+services:
+  sp-service:
+    image: ws-service:latest
+    container_name: ws-service
+    ports:
+      - "9000:9000"
+    expose:
+      - 9000
+  sp-client:
+    image: ws-client:latest
+    container_name: ws-client
+    depends_on:
+    - sp-service
+    links:
+      - sp-service
+    environment:
+    - SERVICE_HOST=sp-service
+    - SERVICE_PORT=9000

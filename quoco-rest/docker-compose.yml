@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  broker:
+    build: broker
+    ports:
+      - "8080:8080"
+    depends_on:
+      - girlpower
+      - dodgydrivers
+      - auldfellas
+  girlpower:
+    build: girlpower
+  dodgydrivers:
+    build: dodgydrivers
+  auldfellas:
+    build: auldfellas
